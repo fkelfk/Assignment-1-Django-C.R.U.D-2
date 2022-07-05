@@ -11,15 +11,19 @@ class MovieView(View):
         movies = Movies.objects.all()
         movieList = []
 
-
         for movie in movies:
-            m1 = movie.actors.all()
+            b = movie.actors.all()
+            actorList = []
+            for i in range(b.count()):
+                c = b[i].first_name
+                actorList.insert(i, c)
             movieList.append(
                 {
-                    "actor": f'{[i for i in m1]}',
+
                     "title": movie.title,
                     "release_date": movie.release_date,
                     "running_time": movie.running_time,
+                    "actor": f'{actorList}',
                 }
 
             )
@@ -32,12 +36,17 @@ class ActorView(View):
         actorList = []
 
         for actor in actors:
-             actorList.append(
+            b = actor.movies_set.all()
+            movieList = []
+            for i in range(b.count()):
+                c = b[i].title
+                movieList.insert(i, c)
+            actorList.append(
                 {
-                    "movies": f'{actor.movies_set.all()}',
                     "first_name": actor.first_name,
                     "last_name": actor.last_name,
                     "date_of_birth": actor.date_of_birth,
+                    "movies": f'{movieList}',
 
                 }
             )
