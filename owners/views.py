@@ -64,14 +64,14 @@ class OwnersView(View):
             for i in range(b.count()):
                 c = b[i].name
                 d = b[i].age
-                e = [c, d]
+                e = {c: d}
                 dogList.insert(i, e)
             ownerList.append(
                 {
                     "name": owner.name,
                     "age": owner.age,
                     "email": owner.email,
-                    "dog": f'{dogList}'
+                    "dog": dogList
                 }
             )
 
