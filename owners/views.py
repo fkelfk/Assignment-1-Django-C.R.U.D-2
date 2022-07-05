@@ -65,6 +65,7 @@ class OwnersView(View):
                     "name": owner.name,
                     "age": owner.age,
                     "email": owner.email,
+                    "dog":f'[i for i in'
                 }
             )
 
