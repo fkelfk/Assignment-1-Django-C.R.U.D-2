@@ -58,14 +58,20 @@ class OwnersView(View):
     def get(self, request):
         owners = Owner.objects.all()
         ownerList = []
-
         for owner in owners:
+            b = owner.dog_set.all()
+            dogList = []
+            for i in range(b.count()):
+                c = b[i].name
+                d = b[i].age
+                e = [c, d]
+                dogList.insert(i, e)
             ownerList.append(
                 {
                     "name": owner.name,
                     "age": owner.age,
                     "email": owner.email,
-                    "dog":f'[i for i in'
+                    "dog": f'{dogList}'
                 }
             )
 
